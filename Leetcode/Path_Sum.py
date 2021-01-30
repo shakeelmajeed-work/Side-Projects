@@ -2,7 +2,7 @@ class Solution:
     def hasPathSum(self, root: TreeNode, targetSum: int) -> bool:
         def pathSum(root,s):
             if not root:
-                return s
+                return s #can also be return False
             if not root.right and not root.left:
                 #Will append the value when you reach leaf node (total of that path)
                 self.l.append(s+root.val)

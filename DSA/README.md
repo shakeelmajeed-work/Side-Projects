@@ -1,0 +1,1 @@
+This folder contains code that showcases my practice with various data structures (especially my own implementation of them) on questions that are not explicitly on platforms like Leetcode. It may also have code from various online courses on Educative, Udemy, Sololearn etc!

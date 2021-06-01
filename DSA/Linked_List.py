@@ -129,6 +129,51 @@ class LinkedList:
             return _reverse_recursively(curr,prev)
         #below call will always return prev (last node of llist or the head of the reversed llist)
         self.head = _reverse_recursively(curr=self.head,prev=None)
+    def remove_duplicates(self):
+        curr = self.head
+        prev = None
+        dupl_values = dict()
+
+        while curr:
+            if curr.data in dupl_values:
+                prev.next = curr.next
+                curr = None
+            else: #element not a key in our reference dict
+                dupl_values[curr.data] = 1
+                prev = curr
+            curr = prev.next #helps go to next node even if we have just removed a duplicate node 
+    def print_nth_from_last(self,n,method):
+        if method==1:
+            total_len = self.len_iteratively()
+            curr = self.head
+            while curr:
+                if total_len == n:
+                    print(curr.data)
+                    return curr.data
+                total_len -=1
+                curr = curr.next
+            if curr is None: #empty linked list or total_len never equal to n 
+                return 
+        elif method==2:
+            p = self.head
+            q = self.head 
+
+            if n>0:
+                count = 0
+                while q:
+                    count+=1
+                    if count>=n:
+                        break
+                    q = q.next
+                if not q:
+                    print(n," is greater than the number of nodes in list hence I cannot print",n,"nodes from the end of the list")
+                    return
+                while p and q.next: #picture a list of size 6 and so q would be at 3rd node whereas p at head (when q gets to end, p should be at the desired node)
+                    p = p.next
+                    q = q.next 
+                return p.data 
+            else:
+                return None   
 #Driver code
 # linked = LinkedList()
 # linked.append('Shakeel')

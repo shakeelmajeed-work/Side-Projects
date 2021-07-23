@@ -1,22 +1,23 @@
 const fs = require('fs') //Importing the file system module so that we can read and write to the json file (the database)
 const chalk = require('chalk')
 
-
-const getNotes = function () {
-    return 'Your notes...'
-}
-
 const addNote = (title,body) => {
     const notes = loadNotes()
 
-    //need to check if a note with the same title already exists 
-    const duplicate_notes = notes.filter((single_note) => {
-        //false means that the note is not a duplicate and so it is not saved on this duplicate list of notes
-        return single_note.title === title 
-        //condition will return true or false depending on the current title of the iteration and the one inputted by the user
-    })
+    // //need to check if a note with the same title already exists 
 
-    if (duplicate_notes.length === 0) { //ie if there are no duplicates 
+    // const duplicate_notes = notes.filter((single_note) => {
+    //     //false means that the note is not a duplicate and so it is not saved on this duplicate list of notes
+
+    //     return single_note.title === title 
+
+    //     //condition will return true or false depending on the current title of the iteration and the one inputted by the user
+    // })
+
+    const duplicate_note = notes.find((note) => note.title === title) 
+    //difference between line above and use of filter above that is that .find stops after finding the first duplicate (does not have to search the rest of the array)
+
+    if (!duplicate_note) { //ie if there are no duplicates 
         notes.push({ //using parameters passed in to define what note and its attributes will be appended to the database
             title: title,
             body: body
@@ -71,8 +72,38 @@ const removeNote = (title) => {
     
 }
 
+
+const listNotes = () => {
+    console.log(chalk.blue("Your Notes:"))
+    const notes = loadNotes()
+
+    notes.forEach((note) => { //using a method to loop through every note and output its respective title 
+        console.log(note.title)
+    });
+
+
+}
+
+const readNote = (title) => {
+    notes = loadNotes()
+    var indicator = false //a flag to know when we have found a note with the same title 
+    for (let i=0; i<notes.length; i++) {
+        if (notes[i].title === title) {
+            console.log("Title:", chalk.blue.bold(notes[i].title))
+            console.log("Body:", notes[i].body)
+            indicator = true
+        }
+    }
+
+    if (!indicator) {
+        console.log(chalk.red.inverse("No note with this title has been found!"))
+    }
+
+}
+
 module.exports = { //each function from above are objects 
-    getNotes: getNotes,
     addNote: addNote,
-    removeNote: removeNote
+    removeNote: removeNote,
+    listNotes: listNotes,
+    readNote: readNote
 }

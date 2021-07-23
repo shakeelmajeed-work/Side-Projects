@@ -1,6 +1,7 @@
 const chalk = require('chalk')
 const notes = require('./notes.js')
 const yargs = require('yargs')
+const { demandOption } = require('yargs')
 
 
 // Create add command for notes app 
@@ -50,7 +51,7 @@ yargs.command({
     command: 'list',
     describe: "List all notes ",
     handler() {
-        console.log("Showing all notes")
+        notes.listNotes()
     }
 })
 
@@ -59,8 +60,16 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: "Read a note",
-    handler() {
-        console.log("Outputting the note!")
+    builder: {
+        title: {
+            describe: 'Read a specific note',
+            demandOption: true,
+            type: 'string'
+
+        }
+    },
+    handler(argv) {
+        notes.readNote(argv.title)
     }
 })
 

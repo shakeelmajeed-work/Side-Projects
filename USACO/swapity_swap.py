@@ -3,7 +3,7 @@ ID: shakeel5
 LANG: PYTHON3
 TASK: swapity swap
 """
-#https://ncs6-my.sharepoint.com/personal/22smajeed_ncs6_org/_layouts/OneNote.aspx?id=%2Fpersonal%2F22smajeed_ncs6_org%2FDocuments%2FNotebooks%2FCoding&wd=target%28Practice.one%7C0CEE4E7B-D989-BD41-8020-FA322B679270%2FSwapity%20Swap%3A%7C1480CAD5-5455-AE4E-975A-49F8D7F5827C%2F%29onenote:https://ncs6-my.sharepoint.com/personal/22smajeed_ncs6_org/Documents/Notebooks/Coding/Practice.one#Swapity%20Swap&section-id={0CEE4E7B-D989-BD41-8020-FA322B679270}&page-id={1480CAD5-5455-AE4E-975A-49F8D7F5827C}&end
+#https://ncs6-my.sharepoint.com/:o:/g/personal/22smajeed_ncs6_org/EpQ61Z4a7zdOtUAB0oYG2aYBlpI-jpShZ-0Q_R4az1AnFQ?e=ZmWdz9
 def swap(start,end,cows):
     if start == 1:
         cows[start-1:end] = cows[end-1::-1] #because if we used the below start-2 would throw an error
